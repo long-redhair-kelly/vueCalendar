@@ -1,0 +1,29 @@
+#main {
+  font-size: 14px;
+  line-height: 20px;
+  table-layout: fixed;
+  width: 100%;
+  margin-bottom: 1rem;
+  color: silver;
+  border-bottom: 1px solid #ddd;
+  border-collapse: collapse;
+}
+#main th {
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: normal;
+  color: #333;
+}
+#main td {
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle;
+  border-top: 1px solid #ddd;
+}
+thead {
+  background-color: #f4c777;
+}
+.today {
+  background-color: #fcf8e3;
+}
