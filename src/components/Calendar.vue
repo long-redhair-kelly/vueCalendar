@@ -1,10 +1,6 @@
 <template>
-  <div id="header">
-    <span class="header-arrow">＜</span>
-    <span class="selected-month">{{ year }}年{{ month }}月</span>
-    <span class="header-arrow">＞</span>
-  </div>
   <div>
+    <CalendarHeader />
     <table id="main">
       <thead>
         <th v-for="(weekDay, weekDayIndex) in weekDays" :key="weekDayIndex">
@@ -29,9 +25,10 @@
 </template>
 
 <script setup lang="ts">
+import "../css/Calendar.css";
+import CalendarHeader from "./CalendarHeader.vue";
+
 const weekDays = ["日", "月", "火", "水", "木", "金", "土"];
-const year: number = 2023;
-const month: number = 4;
 const calendar = [
   ["", "", "", "", "", "", 1],
   [2, 3, 4, 5, 6, 7, 8],
