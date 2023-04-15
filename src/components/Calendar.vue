@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import "../css/Calendar.css";
 import { ref, computed } from "vue";
-// import CalendarHeader from "./CalendarHeader.vue";
 import { YearMonth } from "../../src/interfaces/YearMonth";
 
 const weekDays = ["日", "月", "火", "水", "木", "金", "土"];
@@ -14,9 +13,8 @@ let yearMonth = ref<YearMonth>({
 /**
  * カレンダー本体
  */
-let calendar: Array<Array<string>> = [];
 const computedCalendar = computed(() => {
-  const calendarArray = [];
+  let calendar = [];
   let firstWeekDay = new Date(
     yearMonth.value.year,
     yearMonth.value.month - 1,
@@ -32,7 +30,7 @@ const computedCalendar = computed(() => {
   while (dayNumber < lastDay) {
     let weekData: Array<string> = [];
     for (let i = 0; i <= 6; i++) {
-      if (calendarArray.length == 0 && i < firstWeekDay) {
+      if (calendar.length == 0 && i < firstWeekDay) {
         weekData[i] = "";
       } else if (lastDay < dayNumber) {
         weekData[i] = "";
@@ -41,13 +39,10 @@ const computedCalendar = computed(() => {
         dayNumber++;
       }
     }
-    calendarArray.push(weekData);
+    calendar.push(weekData);
   }
-  calendar = calendarArray;
-  return calendarArray;
+  return calendar;
 });
-// calendar.value = computedCalendar.value;
-console.debug("*** calendar: ", calendar);
 
 /**
  * 現在年月
