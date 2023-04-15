@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import "../css/Calendar.css";
-import { computed, ref } from "vue";
-import CalendarHeader from "./CalendarHeader.vue";
+import { ref, computed } from "vue";
+// import CalendarHeader from "./CalendarHeader.vue";
 import { YearMonth } from "../../src/interfaces/YearMonth";
 
 const weekDays = ["日", "月", "火", "水", "木", "金", "土"];
@@ -11,16 +11,12 @@ let yearMonth = ref<YearMonth>({
   month: currentDate.getMonth() + 1,
 });
 
-function currentYearMonth(currentyearMonth: YearMonth): void {
-  yearMonth.value = currentyearMonth;
-}
-console.debug("*** yearMonth: ", yearMonth);
-
 /**
  * カレンダー本体
  */
 let calendar: Array<Array<string>> = [];
 const computedCalendar = computed(() => {
+  const calendarArray = [];
   let firstWeekDay = new Date(
     yearMonth.value.year,
     yearMonth.value.month - 1,
@@ -36,7 +32,7 @@ const computedCalendar = computed(() => {
   while (dayNumber < lastDay) {
     let weekData: Array<string> = [];
     for (let i = 0; i <= 6; i++) {
-      if (calendar.length == 0 && i < firstWeekDay) {
+      if (calendarArray.length == 0 && i < firstWeekDay) {
         weekData[i] = "";
       } else if (lastDay < dayNumber) {
         weekData[i] = "";
@@ -45,19 +41,75 @@ const computedCalendar = computed(() => {
         dayNumber++;
       }
     }
-    calendar.push(weekData);
+    calendarArray.push(weekData);
   }
-  return calendar;
+  calendar = calendarArray;
+  return calendarArray;
 });
-calendar = computedCalendar.value;
+// calendar.value = computedCalendar.value;
+console.debug("*** calendar: ", calendar);
+
+/**
+ * 現在年月
+ */
+const currentYearMonth = () => {
+  yearMonth.value.year = currentDate.getFullYear();
+  yearMonth.value.month = currentDate.getMonth() + 1;
+  return yearMonth;
+};
+
+/**
+ * 前年
+ */
+const prevYear = () => {
+  yearMonth.value.year--;
+  return yearMonth;
+};
+
+/**
+ * 前月
+ */
+const prevMonth = () => {
+  yearMonth.value.month--;
+  if (yearMonth.value.month < 1) {
+    yearMonth.value.year--;
+    yearMonth.value.month = 12;
+  }
+  return yearMonth;
+};
+
+/**
+ * 来月
+ */
+const nextMonth = () => {
+  yearMonth.value.month++;
+  if (yearMonth.value.month > 12) {
+    yearMonth.value.year++;
+    yearMonth.value.month = 1;
+  }
+  return yearMonth;
+};
+
+/**
+ * 来年
+ */
+const nextYear = () => {
+  yearMonth.value.year++;
+  return yearMonth;
+};
 </script>
 
 <template>
   <div>
-    <CalendarHeader
-      v-model:YearMonth="yearMonth"
-      @emitYaerMonth="currentYearMonth"
-    />
+    <div id="header">
+      <span class="header-arrow" @click="prevYear">◀</span>
+      <span class="header-arrow" @click="prevMonth">＜</span>
+      <span class="selected-month" @click="currentYearMonth"
+        >{{ yearMonth.year }}年{{ yearMonth.month }}月</span
+      >
+      <span class="header-arrow" @click="nextMonth">＞</span>
+      <span class="header-arrow" @click="nextYear">▶</span>
+    </div>
     <table id="main">
       <thead>
         <th v-for="(weekDay, weekDayIndex) in weekDays" :key="weekDayIndex">
@@ -66,7 +118,7 @@ calendar = computedCalendar.value;
       </thead>
       <tbody>
         <tr
-          v-for="(rowNumber, rowNumberIndex) in calendar"
+          v-for="(rowNumber, rowNumberIndex) in computedCalendar"
           :key="rowNumberIndex"
         >
           <td
