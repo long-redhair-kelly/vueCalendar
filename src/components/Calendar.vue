@@ -14,7 +14,7 @@ let yearMonth = ref<YearMonth>({
  * カレンダー本体
  */
 const computedCalendar = computed(() => {
-  let calendar = [];
+  let calendar: Array<Array<string>> = [];
   let firstWeekDay = new Date(
     yearMonth.value.year,
     yearMonth.value.month - 1,
