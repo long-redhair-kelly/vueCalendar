@@ -27,7 +27,7 @@ const computedCalendar = computed(() => {
   ).getDate();
   let dayNumber = 1;
 
-  while (dayNumber < lastDay) {
+  while (dayNumber <= lastDay) {
     let weekData: Array<string> = [];
     for (let i = 0; i <= 6; i++) {
       if (calendar.length == 0 && i < firstWeekDay) {
