@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import "../css/Calendar.css";
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { YearMonth } from "../../src/interfaces/YearMonth";
 
 const weekDays = ["日", "月", "火", "水", "木", "金", "土"];
@@ -8,6 +8,7 @@ const currentDate = new Date();
 let yearMonth = ref<YearMonth>({
   year: currentDate.getFullYear(),
   month: currentDate.getMonth() + 1,
+  today: "",
 });
 
 /**
@@ -92,6 +93,28 @@ const nextYear = () => {
   yearMonth.value.year++;
   return yearMonth;
 };
+
+/**
+ * 指定した日が今日か判定
+ * @param day 日付
+ * @return true: 今日、false: 今日以外
+ */
+const isToday = (day: string) => {
+  let date = yearMonth.value.year + "-" + yearMonth.value.month + "-" + day;
+  if (yearMonth.value.today == date) {
+    return true;
+  }
+  return false;
+};
+
+onMounted(() => {
+  let date = new Date();
+  yearMonth.value.year = date.getFullYear();
+  yearMonth.value.month = date.getMonth() + 1;
+  let actualDay = date.getDate();
+  yearMonth.value.today =
+    yearMonth.value.year + "-" + yearMonth.value.month + "-" + actualDay;
+});
 </script>
 
 <template>
@@ -119,8 +142,10 @@ const nextYear = () => {
           <td
             v-for="(columnNumber, columnNumberIndex) in rowNumber"
             :key="columnNumberIndex"
+            :class="{ today: isToday(columnNumber) }"
           >
-            {{ columnNumber }}
+            <span v-if="isToday(columnNumber)">today</span>
+            <span v-else>{{ columnNumber }}</span>
           </td>
         </tr>
       </tbody>
