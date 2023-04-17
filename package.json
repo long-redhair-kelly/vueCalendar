@@ -17,6 +17,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.21.4",
     "@babel/preset-typescript": "^7.21.4",
+    "@testing-library/vue": "^7.0.0",
     "@types/jest": "^29.5.0",
     "@types/vue": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
@@ -37,7 +38,7 @@
     "ts-jest": "^29.1.0",
     "typescript": "*",
     "vite": "^4.2.0",
-    "vue-jest": "^3.0.7",
+    "vue-jest": "^4.0.1",
     "vue-tsc": "^1.2.0"
   },
   "main": "index.js",
