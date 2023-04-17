@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Calendar.vue Calendar スナップショット(currentDateだけがNGの場合「yarn test:update」を実施) 1`] = `
+exports[`Calendar.vue Calendar スナップショット 1`] = `
 {
   "baseElement": <body>
     <div>
@@ -221,10 +221,10 @@ exports[`Calendar.vue Calendar スナップショット(currentDateだけがNG�
                 </span>
               </td>
               <td
-                class=""
+                class="today"
               >
                 <span>
-                  17
+                  today
                 </span>
               </td>
               <td
@@ -582,10 +582,10 @@ exports[`Calendar.vue Calendar スナップショット(currentDateだけがNG�
               </span>
             </td>
             <td
-              class=""
+              class="today"
             >
               <span>
-                17
+                today
               </span>
             </td>
             <td
