@@ -221,17 +221,17 @@ exports[`Calendar.vue Calendar スナップショット 1`] = `
                 </span>
               </td>
               <td
+                class=""
+              >
+                <span>
+                  17
+                </span>
+              </td>
+              <td
                 class="today"
               >
                 <span>
                   today
-                </span>
-              </td>
-              <td
-                class=""
-              >
-                <span>
-                  18
                 </span>
               </td>
               <td
@@ -582,17 +582,17 @@ exports[`Calendar.vue Calendar スナップショット 1`] = `
               </span>
             </td>
             <td
+              class=""
+            >
+              <span>
+                17
+              </span>
+            </td>
+            <td
               class="today"
             >
               <span>
                 today
-              </span>
-            </td>
-            <td
-              class=""
-            >
-              <span>
-                18
               </span>
             </td>
             <td
