@@ -26,4 +26,27 @@ thead {
 }
 .today {
   background-color: #fcf8e3;
+  border: 4px solid pink !important;
+}
+
+#header {
+  font-size: 20px;
+  padding: 0;
+  text-align: center;
+  background-color: darkorange;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+}
+#header span {
+  padding: 15px 20px;
+  color: white;
+  display: inline-block;
+  cursor: pointer;
+}
+.header-arrow {
+  flex: 1;
+}
+.selected-month {
+  flex: 8;
 }
